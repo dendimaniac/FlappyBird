@@ -7,13 +7,13 @@ public class PlayerDeath : MonoBehaviour
 {
     [SerializeField] private string columnTag;
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag(columnTag))
         {
             GetComponent<PlayerMovement>().enabled = false;
             GetComponent<PlayerInput>().enabled = false;
-            GetComponent<CircleCollider2D>().enabled = false;
+            GetComponent<CircleCollider2D>().isTrigger = true;
         }
     }
 }

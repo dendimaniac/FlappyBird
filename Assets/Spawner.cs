@@ -1,25 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
     public static Spawner Instance { get; private set; }
 
     [SerializeField] private GameObject columnsPrefab;
-    [SerializeField]
-    [Range(0, 2)]
-    private float spawnDelay = 2f;
-    [SerializeField]
-    [Range(0, 6)]
-    private float distanceToSpawn = 4.5f;
-    [SerializeField]
-    [Range(0, 3)]
-    private float spawnHeight;
+    [SerializeField] [Range(0, 7)] private int spawnAmount = 6;
+    [SerializeField] [Range(0, 6)] private float distanceToSpawn = 5;
+    [SerializeField] [Range(0, 3)] private float spawnHeight;
+    [SerializeField] private Vector2 startPosition;
 
-    private float nextSpawnTime;
-    private float lastSpawnX = 8f;
-
+    private GameObject finalSpawn;
+    
     private void Awake()
     {
         if (Instance == null)
@@ -30,28 +22,38 @@ public class Spawner : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
-    private void Update()
-    {
-        if (ShouldSpawn())
-        {
-            Spawn();
-        }
+        Spawn();
     }
 
     private void Spawn()
     {
-        nextSpawnTime = Time.time + spawnDelay;
-        float randomYPos = Random.Range(-spawnHeight, spawnHeight);
-        float newSpawnX = lastSpawnX + distanceToSpawn;
-        Vector2 newSpawnPos = new Vector2(newSpawnX, randomYPos);
-        Instantiate(columnsPrefab, newSpawnPos, Quaternion.identity);
-        lastSpawnX = newSpawnX;
+        float nextSpawnX = startPosition.x;
+        for (var i = 0; i < spawnAmount; i++)
+        {
+            float randomSpawnY = Random.Range(-spawnHeight, spawnHeight);
+            Vector2 newSpawnPos = new Vector2(nextSpawnX, randomSpawnY);
+            GameObject instantiatedCol = Instantiate(columnsPrefab, newSpawnPos, Quaternion.identity);
+            nextSpawnX += distanceToSpawn;
+            if (i != spawnAmount - 1) continue;
+            instantiatedCol.GetComponent<ColumnsReset>().isLast = true;
+            finalSpawn = instantiatedCol;
+        }
     }
 
-    private bool ShouldSpawn()
+    public void ResetColumns(Transform columnsTransform)
     {
-        return Time.time >= nextSpawnTime;
+        float randomSpawnY = Random.Range(-spawnHeight, spawnHeight);
+        columnsTransform.position = new Vector2(GetNextSpawnX(), randomSpawnY);
+        columnsTransform.GetComponent<ColumnsReset>().isLast = true;
+        finalSpawn = columnsTransform.gameObject;
+    }
+
+    private float GetNextSpawnX()
+    {
+        float nextSpawnX = 0f;
+        finalSpawn.GetComponent<ColumnsReset>().isLast = false;
+        nextSpawnX = finalSpawn.transform.position.x;
+        return nextSpawnX + distanceToSpawn;
     }
 }

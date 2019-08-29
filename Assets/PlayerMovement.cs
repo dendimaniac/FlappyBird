@@ -5,7 +5,6 @@ public class PlayerMovement : MonoBehaviour
 {
     public static PlayerMovement Instance { get; private set; }
 
-    [SerializeField] private float moveSpeed;
     [SerializeField] private float flyForce;
 
     private Rigidbody2D rb2D;
@@ -22,12 +21,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb2D = GetComponent<Rigidbody2D>();
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        transform.position += transform.right * moveSpeed * Time.deltaTime;
     }
 
     public void FlyUp()
