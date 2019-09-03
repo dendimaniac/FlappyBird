@@ -4,11 +4,11 @@
 public class PlayerInput : MonoBehaviour
 {
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            PlayerMovement.Instance.FlyUp();
+            PlayerMovement.Instance.Jump();
         }
     }
 }

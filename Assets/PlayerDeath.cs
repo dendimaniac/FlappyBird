@@ -9,11 +9,11 @@ public class PlayerDeath : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag(columnTag))
-        {
-            GetComponent<PlayerMovement>().enabled = false;
-            GetComponent<PlayerInput>().enabled = false;
-            GetComponent<CircleCollider2D>().isTrigger = true;
-        }
+        if (!other.gameObject.CompareTag(columnTag) || GetComponent<PlayerMovement>().enabled == false) return;
+        ColumnsMovement.canMove = false;
+        GetComponent<SpriteRenderer>().color = Color.red;
+        GetComponent<PlayerMovement>().StopVerticalMovement();
+        GetComponent<PlayerMovement>().enabled = false;
+        GetComponent<PlayerInput>().enabled = false;
     }
 }

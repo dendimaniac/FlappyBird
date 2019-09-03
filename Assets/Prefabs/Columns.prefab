@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heightRange: 3
+  isLast: 0
 --- !u!114 &1166508781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4412d709736a2264b91e4d58314c32f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  baseMoveSpeed: 3
+  maxMoveSpeed: 4
+  speedIncrement: 0.05
 --- !u!1 &8312333857596793384
 GameObject:
   m_ObjectHideFlags: 0

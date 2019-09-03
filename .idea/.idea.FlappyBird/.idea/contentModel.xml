@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\Quan Dao\.Rider2019.2\system\extResources" t="IncludeRecursive" />
@@ -15,11 +15,15 @@
         <e p="PlayerInput.cs" t="Include" />
         <e p="PlayerMovement.cs" t="Include" />
         <e p="Spawner.cs" t="Include" />
+        <e p="Tests" t="Include">
+          <e p="PlayerTransformTest.cs" t="Include" />
+        </e>
       </e>
       <e p="FlappyBird.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />
       <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="Tests.csproj" t="IncludeRecursive" />
     </e>
   </component>
 </project>
