@@ -2,12 +2,26 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IPlayerMovementController
 {
+    public PlayerController playerController;
     public static PlayerMovement Instance { get; private set; }
 
-    [SerializeField] private float flyForce;
-    [SerializeField] [Range(4.5f, 5)] private float maxHeight;
+    [SerializeField] private float jumpForce = 400f;
+    public float JumpForce => jumpForce;
+
+    public Vector3 Position
+    {
+        get => transform.position;
+        set => transform.position = value;
+    }
+
+    [SerializeField] [Range(4.5f, 5)] private float maxHeight = 4.5f;
+
+    public float MaxHeight
+    {
+        get => maxHeight;
+    }
 
     private Rigidbody2D rb2D;
     private Transform playerTransform;
@@ -25,19 +39,12 @@ public class PlayerMovement : MonoBehaviour
 
         rb2D = GetComponent<Rigidbody2D>();
         playerTransform = transform;
-    }
-
-    public void Jump()
-    {
-        StopVerticalMovement();
-        rb2D.AddForce(new Vector2(0f, flyForce));
+        playerController = new PlayerController(this, rb2D);
     }
 
     private void Update()
     {
-        if (transform.position.y < maxHeight) return;
-        playerTransform.position = new Vector2(playerTransform.position.x, maxHeight);
-        StopVerticalMovement();
+        playerController.CheckReachMaxHeight();
     }
 
     public void StopVerticalMovement()

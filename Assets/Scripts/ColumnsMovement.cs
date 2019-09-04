@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class ColumnsMovement : MonoBehaviour
 {
-    [SerializeField] private float baseMoveSpeed;
-    [SerializeField] private float maxMoveSpeed;
+    [SerializeField] private float baseMoveSpeed = 3f;
+    [SerializeField] private float maxMoveSpeed = 4f;
 
     private float currentMoveSpeed;
 

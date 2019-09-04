@@ -8,7 +8,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            PlayerMovement.Instance.Jump();
+            PlayerMovement.Instance.playerController.Jump();
         }
     }
 }
