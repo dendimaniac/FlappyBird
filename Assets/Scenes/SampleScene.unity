@@ -401,8 +401,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26bbf8250a232924f8d9e389a51a7bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flyForce: 400
-  maxHeight: 4.65
+  jumpForce: 400
+  maxHeight: 4.5
 --- !u!58 &1464443638
 CircleCollider2D:
   m_ObjectHideFlags: 0
