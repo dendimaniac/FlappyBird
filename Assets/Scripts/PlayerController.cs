@@ -25,7 +25,7 @@ public class PlayerController
     public void CheckReachMaxHeight()
     {
         if (movementController.Position.y < movementController.MaxHeight) return;
-        movementController.Position = new Vector2(movementController.Position.x, movementController.JumpForce);
+        movementController.Position = new Vector2(movementController.Position.x, movementController.MaxHeight);
         StopVerticalMovement();
     }
 }

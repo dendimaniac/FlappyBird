@@ -8,9 +8,13 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovementController
     public static PlayerMovement Instance { get; private set; }
 
     [SerializeField] private float jumpForce = 400f;
-    public float JumpForce => jumpForce;
+    public float JumpForce
+    {
+        get => jumpForce;
+        set => jumpForce = value;
+    }
 
-    public Vector3 Position
+    public Vector2 Position
     {
         get => transform.position;
         set => transform.position = value;
@@ -21,6 +25,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovementController
     public float MaxHeight
     {
         get => maxHeight;
+        set => maxHeight = value;
     }
 
     private Rigidbody2D rb2D;
@@ -45,10 +50,5 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovementController
     private void Update()
     {
         playerController.CheckReachMaxHeight();
-    }
-
-    public void StopVerticalMovement()
-    {
-        rb2D.velocity = new Vector2(rb2D.velocity.x, 0f);
     }
 }
