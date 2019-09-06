@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour, IPlayerMovementController
@@ -8,11 +7,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovementController
     public static PlayerMovement Instance { get; private set; }
 
     [SerializeField] private float jumpForce = 400f;
-    public float JumpForce
-    {
-        get => jumpForce;
-        set => jumpForce = value;
-    }
+    public float JumpForce => jumpForce;
 
     public Vector2 Position
     {
@@ -22,14 +17,9 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovementController
 
     [SerializeField] [Range(4.5f, 5)] private float maxHeight = 4.5f;
 
-    public float MaxHeight
-    {
-        get => maxHeight;
-        set => maxHeight = value;
-    }
+    public float MaxHeight => maxHeight;
 
     private Rigidbody2D rb2D;
-    private Transform playerTransform;
 
     private void Awake()
     {
@@ -43,7 +33,6 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovementController
         }
 
         rb2D = GetComponent<Rigidbody2D>();
-        playerTransform = transform;
         playerController = new PlayerController(this, rb2D);
     }
 

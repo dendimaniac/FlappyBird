@@ -1,24 +1,24 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ColumnsMovement : MonoBehaviour
 {
     [SerializeField] private float baseMoveSpeed = 3f;
     [SerializeField] private float maxMoveSpeed = 4f;
+    [SerializeField] private int difficultyThreshold = 50;
 
     private float currentMoveSpeed;
 
-    public static bool canMove;
+    public static bool CanMove;
 
     private void Awake()
     {
-        canMove = true;
+        CanMove = true;
         currentMoveSpeed = baseMoveSpeed;
     }
 
     private void Update()
     {
-        if (!canMove) return;
+        if (!CanMove) return;
         var columnsTransform = transform;
         Move(columnsTransform);
         TryIncreaseSpeed();
@@ -26,13 +26,19 @@ public class ColumnsMovement : MonoBehaviour
 
     private void Move(Transform columnsTransform)
     {
-        Debug.Log(currentMoveSpeed);
         columnsTransform.position += Time.fixedDeltaTime * currentMoveSpeed * Vector3.left;
     }
 
     private void TryIncreaseSpeed()
     {
-        if (currentMoveSpeed >= maxMoveSpeed) return;
-        currentMoveSpeed += Time.fixedDeltaTime;
+        if (CanAccelerate())
+        {
+            currentMoveSpeed += Time.fixedDeltaTime;
+        }
+    }
+
+    private bool CanAccelerate()
+    {
+        return !(currentMoveSpeed >= maxMoveSpeed) && ScoreCheck.CurrentScore % difficultyThreshold == 0;
     }
 }
