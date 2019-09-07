@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,12 +14,14 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
-        DontDestroyOnLoad(gameObject);
     }
-
-    public void Retry()
+    
+    public void DisablePlayerControls(GameObject player)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        ColumnsMovement.CanMove = false;
+        player.GetComponent<SpriteRenderer>().color = Color.red;
+        player.GetComponent<PlayerMovement>().playerController.StopVerticalMovement();
+        player.GetComponent<PlayerMovement>().enabled = false;
+        player.GetComponent<PlayerInput>().enabled = false;
     }
 }
