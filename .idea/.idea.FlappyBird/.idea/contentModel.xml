@@ -12,15 +12,19 @@
           <e p="ColumnsMovement.cs" t="Include" />
           <e p="ColumnsReset.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
-          <e p="HighScore.cs" t="Include" />
+          <e p="HighScoreController.cs" t="Include" />
           <e p="IPlayerMovementController.cs" t="Include" />
           <e p="LosingCheck.cs" t="Include" />
+          <e p="Menu.cs" t="Include" />
+          <e p="MenuManager.cs" t="Include" />
+          <e p="MenuName.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
           <e p="PlayerDeath.cs" t="Include" />
           <e p="PlayerInput.cs" t="Include" />
           <e p="PlayerMovement.cs" t="Include" />
           <e p="ScoreCheck.cs" t="Include" />
           <e p="Spawner.cs" t="Include" />
+          <e p="UiManager.cs" t="Include" />
         </e>
       </e>
       <e p="FlappyBird.sln" t="IncludeFlat" />
