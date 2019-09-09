@@ -8,6 +8,8 @@ public class UiManager: MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI highScoreText;
+    
+    private bool isOpened = false;
 
     private void Awake()
     {
@@ -19,6 +21,24 @@ public class UiManager: MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    
+    private void Update()
+    {
+        if (!Input.GetButtonDown("Cancel"))
+        {
+            return;
+        }
+        TogglePause();
+    }
+    
+    public void TogglePause()
+    {
+        MenuManager.Instance.ToggleCanvas(isOpened ? MenuName.Score : MenuName.Pause);
+        Time.timeScale = isOpened ? 1 : 0;
+        ColumnsMovement.CanMove = isOpened;
+        GameManager.Instance.playerInput.enabled = isOpened;
+        isOpened = !isOpened;
     }
     
     public void Retry()

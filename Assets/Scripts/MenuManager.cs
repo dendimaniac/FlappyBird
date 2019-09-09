@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour
@@ -22,7 +20,7 @@ public class MenuManager : MonoBehaviour
         
         ToggleCanvas(MenuName.Score);
     }
-
+    
     public void ToggleCanvas(MenuName menuName)
     {
         foreach (var menu in menuList)
