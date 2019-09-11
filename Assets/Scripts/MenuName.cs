@@ -2,5 +2,6 @@
 {
     Score,
     Lose,
-    Pause
+    Pause,
+    ScoreCounter
 }

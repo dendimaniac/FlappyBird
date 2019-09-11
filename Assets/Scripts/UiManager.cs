@@ -29,12 +29,29 @@ public class UiManager: MonoBehaviour
         {
             return;
         }
+        if (isOpened)
+        {
+            Unpause();
+        }
+        else
+        {
+            Pause();
+        }
+    }
+
+    public void Pause()
+    {
+        MenuManager.Instance.ToggleCanvas(MenuName.Pause);
         TogglePause();
     }
-    
+
+    public void Unpause()
+    {
+        MenuManager.Instance.ToggleCanvas(MenuName.ScoreCounter);
+    }
+
     public void TogglePause()
     {
-        MenuManager.Instance.ToggleCanvas(isOpened ? MenuName.Score : MenuName.Pause);
         Time.timeScale = isOpened ? 1 : 0;
         ColumnsMovement.CanMove = isOpened;
         GameManager.Instance.playerInput.enabled = isOpened;
