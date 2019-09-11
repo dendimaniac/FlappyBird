@@ -39,7 +39,7 @@ public class UiManager: MonoBehaviour
         }
     }
 
-    public void Pause()
+    private void Pause()
     {
         MenuManager.Instance.ToggleCanvas(MenuName.Pause);
         TogglePause();

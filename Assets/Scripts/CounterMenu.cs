@@ -13,14 +13,14 @@ public class CounterMenu : Menu
 
     private void Awake()
     {
+        timer.Elapsed += (sender, e) => currentCounter--;
+        
         counterText = GetComponentInChildren<TextMeshProUGUI>();
-
         currentCounter = maxCounter;
     }
 
     private void OnEnable()
     {
-        timer.Elapsed += (object sender, ElapsedEventArgs e) => currentCounter--;
         timer.Start();
     }
 
@@ -33,11 +33,10 @@ public class CounterMenu : Menu
     private void Update()
     {
         UpdateCounter();
-        if (currentCounter <= 0)
-        {
-            UiManager.Instance.TogglePause();
-            MenuManager.Instance.ToggleCanvas(MenuName.Score);
-        }
+        if (currentCounter > 0) return;
+        
+        UiManager.Instance.TogglePause();
+        MenuManager.Instance.ToggleCanvas(MenuName.Score);
     }
 
     private void UpdateCounter()
