@@ -12,7 +12,7 @@ public class PlayerDeath : MonoBehaviour
     {
         if (IsDead(other)) return;
         
-        GameManager.Instance.DisablePlayerControls(gameObject);
+        GameManager.Instance.DisablePlayerControls();
     }
 
     private bool IsDead(Collider2D other)

@@ -1,5 +1,7 @@
 ﻿public enum MenuName
 {
     Score,
-    Lose
+    Lose,
+    Pause,
+    ScoreCounter
 }

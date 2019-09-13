@@ -5,7 +5,7 @@ public class LosingCheck : MonoBehaviour
 {
     [SerializeField] private string playerTag = "Player";
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionStay2D(Collision2D other)
     {
         if (NotPlayer(other)) return;
         MenuManager.Instance.ToggleCanvas(MenuName.Lose);
@@ -14,7 +14,7 @@ public class LosingCheck : MonoBehaviour
             HighScoreController.SaveHighScore(ScoreCheck.CurrentScore);
         }
         
-        GameManager.Instance.DisablePlayerControls(other.gameObject);
+        GameManager.Instance.DisablePlayerControls();
         UiManager.Instance.UpdateHighScore();
     }
 
