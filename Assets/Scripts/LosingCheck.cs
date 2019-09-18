@@ -13,8 +13,15 @@ public class LosingCheck : MonoBehaviour
         {
             HighScoreController.SaveHighScore(ScoreCheck.CurrentScore);
         }
-        
+
         GameManager.Instance.DisablePlayerControls();
+        if (!PlayerDeath.DidDie)
+        {
+            AudioManager.Instance.StopSounds();
+            AudioManager.Instance.PlaySound("Death");
+            PlayerDeath.DidDie = true;
+        }
+
         UiManager.Instance.UpdateHighScore();
     }
 

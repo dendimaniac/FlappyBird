@@ -9,6 +9,7 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             PlayerMovement.Instance.playerController.Jump();
+            AudioManager.Instance.PlaySound("Jump");
         }
     }
 }
