@@ -1,5 +1,4 @@
-﻿using System.Security.Policy;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerInput))]
@@ -8,14 +7,27 @@ public class PlayerDeath : MonoBehaviour
 {
     [SerializeField] private string columnTag = "Player";
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public static bool DidDie;
+
+    private void Awake()
     {
-        if (IsDead(other)) return;
-        
-        GameManager.Instance.DisablePlayerControls();
+        DidDie = false;
     }
 
-    private bool IsDead(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (CantDie(other)) return;
+
+        GameManager.Instance.DisablePlayerControls();
+
+        if (DidDie) return;
+        
+        AudioManager.Instance.StopSounds();
+        AudioManager.Instance.PlaySound("Death");
+        DidDie = true;
+    }
+
+    private bool CantDie(Collider2D other)
     {
         return !other.gameObject.CompareTag(columnTag) || GetComponent<PlayerMovement>().enabled == false;
     }

@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
-    public Sound[] sounds;
+    [SerializeField] private Sound[] sounds;
 
     [Header("Volume")] [SerializeField] [Range(0.2f, 0.5f)]
     private float lowVolumeRange;
@@ -30,8 +33,15 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         GenerateSoundSource();
+    }
 
-        PlayMusic("Music");
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += delegate
+        {
+            StopSounds();
+            PlayMusic("Music");
+        };
     }
 
     private void GenerateSoundSource()
@@ -40,12 +50,22 @@ public class AudioManager : MonoBehaviour
         {
             var newSound = new GameObject(sound.name);
             sound.source = newSound.AddComponent<AudioSource>();
+
             sound.source.clip = sound.clip;
             sound.source.volume = sound.volume;
             sound.source.pitch = sound.pitch;
             sound.source.loop = sound.loop;
             sound.source.playOnAwake = sound.playOnAwake;
+
             newSound.transform.parent = transform;
+        }
+    }
+
+    public void StopSounds()
+    {
+        foreach (var s in sounds)
+        {
+            s.source.Stop();
         }
     }
 

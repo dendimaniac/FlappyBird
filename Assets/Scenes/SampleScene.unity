@@ -1785,7 +1785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26bbf8250a232924f8d9e389a51a7bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 530
+  jumpForce: 510
   maxHeight: 4.65
 --- !u!58 &1464443638
 CircleCollider2D:
@@ -3306,6 +3306,13 @@ MonoBehaviour:
     playOnAwake: 1
   - name: Jump
     clip: {fileID: 8300000, guid: 3e63bad6e8af7ff448c7df46214ffa72, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+  - name: Death
+    clip: {fileID: 8300000, guid: 0a9c2fe265e3456478e89e2333ddba29, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
