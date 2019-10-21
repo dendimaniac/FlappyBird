@@ -5,7 +5,7 @@
 [RequireComponent(typeof(CircleCollider2D))]
 public class PlayerDeath : MonoBehaviour
 {
-    [SerializeField] private string columnTag = "Player";
+    [SerializeField] private string columnTag = "Columns";
 
     public static bool DidDie;
 

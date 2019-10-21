@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     private SpriteRenderer spriteRenderer;
     private PlayerMovement playerMovement;
+    private Collider2D playerCollider;
     [HideInInspector] public PlayerInput playerInput;
 
     private void Awake()
