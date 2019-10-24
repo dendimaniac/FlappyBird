@@ -9,7 +9,7 @@ public class UiManager: MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI highScoreText;
     
-    private bool isOpened = false;
+    private bool isPaused;
 
     private void Awake()
     {
@@ -29,7 +29,7 @@ public class UiManager: MonoBehaviour
         {
             return;
         }
-        if (isOpened)
+        if (isPaused)
         {
             Unpause();
         }
@@ -52,15 +52,24 @@ public class UiManager: MonoBehaviour
 
     public void TogglePause()
     {
-        Time.timeScale = isOpened ? 1 : 0;
-        ColumnsMovement.CanMove = isOpened;
-        GameManager.Instance.playerInput.enabled = isOpened;
-        isOpened = !isOpened;
+        Time.timeScale = isPaused ? 1 : 0;
+        ColumnsMovement.CanMove = isPaused;
+        GameManager.Instance.playerInput.enabled = isPaused;
+        isPaused = !isPaused;
     }
     
     public void Retry()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void BackToMain()
+    {
+        if (isPaused)
+        {
+            TogglePause();
+        }
+        SceneManager.LoadScene("Main Menu");
     }
 
     public void Quit()

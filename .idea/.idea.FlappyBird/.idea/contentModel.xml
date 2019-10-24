@@ -17,6 +17,7 @@
           <e p="HighScoreController.cs" t="Include" />
           <e p="IPlayerMovementController.cs" t="Include" />
           <e p="LosingCheck.cs" t="Include" />
+          <e p="MainMenuUI.cs" t="Include" />
           <e p="Menu.cs" t="Include" />
           <e p="MenuManager.cs" t="Include" />
           <e p="MenuName.cs" t="Include" />
